@@ -31,8 +31,29 @@ mvn clean install
 ## Construido
 
 [Eclipse](https://www.eclipse.org/) plataforma de código abierto para el desarrollo de aplicaciones
+[IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/)
 
-## Heroku
+## Pasos realizados
+
+Primera parte crear la aplicación web
+
+para poder probarla ejecutamos el siguiente comando
+
+```
+mvn exec:java -Dexec.mainClass="edu.escuelaing.arep.SparkDockerwebLive.SparkWebServer"
+```
+
+![exec](imagenes/exec.png)
+
+![hello](imagenes/hello.png)
+
+Use docker-compose para generar automáticamente una configuración docker.
+
+![compose](imagenes/compose.png)
+
+![ps](imagenes/ps.png)
+
+![docker](imagenes/docker.png)
 
 ## Autor
 
