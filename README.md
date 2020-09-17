@@ -55,6 +55,22 @@ Use docker-compose para generar automáticamente una configuración docker.
 
 ![docker](imagenes/docker.png)
 
+![image](imagenes/image.png)
+
+![contenedores](imagenes/contenedores.png)
+
+![34002](imagenes/34002.png)
+
+![dockerconteiner](imagenes/dockerconteiner.png)
+
+![repository](imagenes/repository.png)
+
+![referencia](imagenes/referencia.png)
+
+![push](imagenes/push.png)
+
+![tag](imagenes/tag.png)
+
 ## Autor
 
 Edwin Yesid Rodriguez Maldonado
