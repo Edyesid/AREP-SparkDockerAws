@@ -5,21 +5,27 @@ version: '2'
 services:
     web:
         build:
-            context: .
+            context: ../
             dockerfile: Dockerfile
         container_name: web
         ports:
             - "8087:6000"
+
     db:
-        image: mongo:3.6.1
-        container_name: db
-        volumes:
+        image: mongo:latest
+        container_name: mongo-db
+        environment:
+            MONGO_INITDB_DATABASE: AREP-DB
+            MONGO_INITDB_ROOT_USERNAME: edyesid
+            MONGO_INITDB_ROOT_PASSWORD: edwin123
+        volumes: 
+            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
             - mongodb:/data/db
             - mongodb_config:/data/configdb
         ports:
             - 27017:27017
         command: mongod
-        
+
 volumes:
     mongodb:
     mongodb_config:
