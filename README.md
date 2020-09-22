@@ -6,7 +6,7 @@ El objetivo esconstruir una aplicación con la arquitectura descrita en la sigui
 
 ![architecture](imagenes/architecture.png)
 
-y desplegarla en AWS usando EC2 y Docker
+y desplegarla en AWS usando EC2 y Docker. puedes ver el articulo para el ver la solución [Aqui](AREP_SparkDockerWebLive.pdf)
 
 --------------------------------------------------------------------------------------------------------------
 
