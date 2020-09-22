@@ -7,6 +7,7 @@ El objetivo esconstruir una aplicación con la arquitectura descrita en la sigui
 ![architecture](imagenes/architecture.png)
 
 y desplegarla en AWS usando EC2 y Docker
+
 --------------------------------------------------------------------------------------------------------------
 
 ## Descarga y instalación
