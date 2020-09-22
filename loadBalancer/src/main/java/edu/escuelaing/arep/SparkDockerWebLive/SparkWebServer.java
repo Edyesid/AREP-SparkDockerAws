@@ -1,28 +1,30 @@
 package edu.escuelaing.arep.SparkDockerWebLive;
 import static spark.Spark.*;
-
-import edu.escuelaing.arep.services.DataBase;
 /**
  * Server http spark
  */
 public class SparkWebServer {
 	
+	private static HttpClient client = new HttpClient();
+	
     public static void main(String... args) {
-    	DataBase db = new DataBase();
-    	staticFiles.location("/public");
+    	
         port(getPort());
+        staticFiles.location("/public");
         get("/hello", (req,res) -> "Hello Docker!");
         get("/descripciones", (req,res) -> {
-        	return db.getDescription();
+        	System.out.println("BODY");
+        	System.out.println(req.body());
+        	String response = client.getMessages("/descripciones");
+        	client.roundRobin();
+        	return response;
         });
-		post("/add", (request, response) -> {
-			
-			String req = request.body(); //String en formato json
-
-			db.addPalabra(req);
-			
-			return "{\"confirm\":" + "ok" + "}";
-			
+		post("/add", (req, res) -> {
+			System.out.println("BODY");
+        	System.out.println(req.body());
+			String response = client.postMessage(req.body(), "/add");
+			client.roundRobin();			
+			return response;
 		});
     }
     private static int getPort() {

@@ -9,20 +9,15 @@ public class SparkWebServer {
 	
     public static void main(String... args) {
     	DataBase db = new DataBase();
-    	staticFiles.location("/public");
         port(getPort());
         get("/hello", (req,res) -> "Hello Docker!");
         get("/descripciones", (req,res) -> {
         	return db.getDescription();
         });
-		post("/add", (request, response) -> {
-			
+		post("/add", (request, response) -> {		
 			String req = request.body(); //String en formato json
-
 			db.addPalabra(req);
-			
-			return "{\"confirm\":" + "ok" + "}";
-			
+			return "{\"confirm\":" + "ok" + "}";			
 		});
     }
     private static int getPort() {

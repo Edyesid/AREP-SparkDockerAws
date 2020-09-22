@@ -1,31 +1,42 @@
 version: '2'
 
- 
 
-services:
-    web:
-        build:
-            context: ../
-            dockerfile: Dockerfile
-        container_name: web
-        ports:
-            - "8087:6000"
 
-    db:
-        image: mongo:latest
-        container_name: mongo-db
-        environment:
-            MONGO_INITDB_DATABASE: AREP-DB
-            MONGO_INITDB_ROOT_USERNAME: edyesid
-            MONGO_INITDB_ROOT_PASSWORD: edwin123
-        volumes: 
-            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-            - mongodb:/data/db
-            - mongodb_config:/data/configdb
-        ports:
-            - 27017:27017
-        command: mongod
+services:            
+   loadbalancer:
+      build:
+         context: ../loadBalancer
+         dockerfile: Dockerfile
+      depends_on:
+         - web
+      container_name: AREP-LB
+      ports: 
+         - "40000:6000"
+
+   web:
+      build:
+         context: ../sparkDockerWebLive
+         dockerfile: Dockerfile
+      depends_on:
+         - db
+      ports:
+         - "40001-40003:6000"
+
+   db:
+      image: mongo:latest
+      container_name: mongo-db
+      environment:
+         MONGO_INITDB_DATABASE: AREP-DB
+         MONGO_INITDB_ROOT_USERNAME: edyesid
+         MONGO_INITDB_ROOT_PASSWORD: edwin123
+      volumes: 
+         - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+         - mongodb:/data/db
+         - mongodb_config:/data/configdb
+      ports:
+         - 27017:27017
+      command: mongod
 
 volumes:
-    mongodb:
-    mongodb_config:
+   mongodb:
+   mongodb_config:

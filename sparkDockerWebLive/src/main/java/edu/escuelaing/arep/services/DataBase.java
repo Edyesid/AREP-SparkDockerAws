@@ -14,8 +14,9 @@ public class DataBase {
 	private MongoCollection<org.bson.Document> columnas;
 	
 	public DataBase() {
+		// localhost mongo-db
 		MongoClientURI uri = new MongoClientURI(
-		    "mongodb://edyesid:edwin123@localhost:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=AREP-DB&authMechanism=SCRAM-SHA-256&3t.uriVersion=3");		
+		    "mongodb://edyesid:edwin123@mongo-db:27017/?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&authSource=AREP-DB&authMechanism=SCRAM-SHA-256&3t.uriVersion=3");		
 		MongoClient mongoClient = new MongoClient(uri);
 		MongoDatabase database = mongoClient.getDatabase("AREP-DB");		
 		columnas = database.getCollection("dbarep");
@@ -28,8 +29,10 @@ public class DataBase {
 			palabra = new Palabra(d.get("descripcion").toString(), d.get("fecha").toString());
 			descripciones += palabra.toString() + ",";			
 		}
+		
+		if (columnas.countDocuments() == 0) descripciones = "[ ";
 		descripciones = descripciones.substring(0, descripciones.length() - 1);
-		descripciones += "]";
+		descripciones += "]";		
 		return descripciones;
 	}
 	
