@@ -2,10 +2,12 @@
 
 --------------------------------------------------------------------------------------------------------------
 
-## Prerequisitos
+El objetivo esconstruir una aplicación con la arquitectura descrita en la siguiente imagen
 
+![architecture](imagenes/architecture.png)
+
+y desplegarla en AWS usando EC2 y Docker
 --------------------------------------------------------------------------------------------------------------
-
 
 ## Descarga y instalación
 
@@ -19,29 +21,30 @@ Es recomendable tener instalado maven en su computadora para poder visualizar de
 
 [install maven](https://maven.apache.org/install.html)
 
-Una vez que tenga maven en su computadora, dirijase a la carpeta raiz de este repositorio y para compilar el proyecto se deber introducir el siguiente comando:
+## Pasos y pruebas
 
-```
-mvn clean install
-```
+El servicio implementado es una pagina web que recibe una palabra y esta se almacena en una base de datos mongo con la fecha de creación de la palabra, esto se hacer mediante 
+una peticion post /add
 
-## Pruebas
+![pagina](imagenes/pagina.png)
 
+Las palabras de la base de datos se puede consultar mediante una peticion get /descripciones que mostrara una lista de palabras y fechas en formato Json
 
-## Construido
+![holajson](imagenes/holajson.png)
 
-[Eclipse](https://www.eclipse.org/) plataforma de código abierto para el desarrollo de aplicaciones
-[IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/)
+Se crearon los 3 contenedores para el servicio, una para el balanceador de carga y una para la base de datos mongo en Docker
 
-## Pasos realizados
+![3](imagenes/3.png)
 
-Primera parte crear la aplicación web
+Se crearon dos repositorios en la cuenta de docker hub
 
-para poder probarla ejecutamos el siguiente comando
+![hub](imagenes/hub.png)
 
-```
-mvn exec:java -Dexec.mainClass="edu.escuelaing.arep.SparkDockerwebLive.SparkWebServer"
-```
+Por ultimo se subieron las imagenes de docker en una maquina de aws y se probo que funcionara correctamente
+
+![aws](imagenes/aws.png)
+
+## Pasos taller
 
 ![exec](imagenes/exec.png)
 
@@ -88,6 +91,11 @@ Use docker-compose para generar automáticamente una configuración docker.
 ![regla](imagenes/regla.png)
 
 ![nice](imagenes/nice.png)
+
+## Construido
+
+[Eclipse](https://www.eclipse.org/) plataforma de código abierto para el desarrollo de aplicaciones
+[IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/)
 
 ## Autor
 
